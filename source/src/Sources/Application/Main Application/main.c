@@ -11,7 +11,6 @@
 #include    "PIT.h"
 #include    "dummy.h"
 #include	"init.h"
-#include	"LED.h"
 
 /*****************************************************************************************************
 * Definition of module wide VARIABLEs 

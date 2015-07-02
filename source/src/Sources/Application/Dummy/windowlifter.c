@@ -1,41 +1,40 @@
-/*******************************************************************************
-*		Practice Number 2
-*		Automotive Entry Program 2015
-*		Misael Alvarez
-********************************************************************************/
+/*============================================================================*/
+/*                        Continental AEP 2015                              */
+/*============================================================================*/
+/*                        OBJECT SPECIFICATION                                */
+/*============================================================================*
+* C Source:         windowlifter.c
+* Instance:         RPL_1
+* %version:         1.0
+* %created_by:      Misael Alvarez Domínguez
+* %date_created:    Wednesday, July 1, 2015
+*=============================================================================*/
+/* DESCRIPTION : Window Lifter state functions                                      */
+/*============================================================================*/
+/* FUNCTION COMMENT : This file describes the C source template according to  */
+/* the new software platform                                                  */
+/*                                                                            */
+/*============================================================================*/
+/*                               OBJECT HISTORY                               */
+/*============================================================================*/
+/*  REVISION |   DATE      |                               |      AUTHOR      */
+/*----------------------------------------------------------------------------*/
+/*  1.0      | DD/MM/YYYY  |                               | Mr. Template     */
+/* Integration under Continuus CM                                             */
+/*============================================================================*/
 
-/*******************************************************************************/
-/*
-\file       dummy.c
-\brief      Window Lifter state functions
-\author     Misael AD
-\version    1.0
-\date       June 2015
-*/
-
-/*****************************************************************************************************
- Include files
-*****************************************************************************************************/
-
-/* Core modules */
-/* Variable types and common definitions */
-
-/* Own headers */
+/* Includes */
+/* -------- */
 #include "windowlifter.h"
 
-/* Used modules */ 
 #include "LED.h"
 #include "delay.h"
 
-/*****************************************************************************************************
- Defines
-*****************************************************************************************************/
+/* Functions macros, constants, types and datas         */
+/* ---------------------------------------------------- */
 #define CLOSED (T_SBYTE)10			/* WindowPosition fully closed value */
 #define OPENED (T_SBYTE)0			/* WindowPosition fully opened value */
 
-/*****************************************************************************************************
- Definition of VARIABLEs 
-*****************************************************************************************************/
 TASKSTRUCT states_table[]={		/* Task's table	 initialization */
 /*Time period*/			/* States */  	  /*	Defined as:			*/
 /*   1ms */		{0,   1, &Idle			},/* 0 - WindowIdle			*/
@@ -49,17 +48,75 @@ TASKSTRUCT states_table[]={		/* Task's table	 initialization */
 };
 
 TASKSTRUCT *rps_TaskPtr = &states_table[0];	/* Pointer to state; initial: IDLE */
+/* Functions macros */
 
+/*==================================================*/ 
+/* Definition of constants                          */
+/*==================================================*/ 
+/* BYTE constants */
+
+
+/* WORD constants */
+
+
+/* LONG and STRUCTURE constants */
+
+
+
+/*======================================================*/ 
+/* Definition of RAM variables                          */
+/*======================================================*/ 
+/* BYTE RAM variables */
 T_SBYTE  WindowPosition = CLOSED;			/* Initial window state: CLOSED */
 
-/*****************************************************************************************************
- Functions 
-*****************************************************************************************************/
+/* WORD RAM variables */
 
-/* Idle function 					*/
-/* Window lifter state: WindowIdle 	*/
-/* Reads buttons signals 			*/
-/* June 2015 Continental AEP 		*/
+
+/* LONG and STRUCTURE RAM variables */
+
+
+/*======================================================*/ 
+/* close variable declaration sections                  */
+/*======================================================*/ 
+
+/* Private defines */
+
+#define WindowIdle 			states_table[0]
+#define ValidateUpSignal 	states_table[1]
+#define ValidateDownSignal 	states_table[2]
+#define ManualMode 			states_table[3]
+#define OneTouchUp 			states_table[4]
+#define OneTouchDown 		states_table[5]
+#define PinchOpen 			states_table[6]
+#define PinchIdle 			states_table[7]
+
+/* Private functions prototypes */
+/* ---------------------------- */
+
+
+/* Exported functions prototypes */
+/* ----------------------------- */
+
+/* Inline functions */
+/* ---------------- */
+/**************************************************************
+ *  Name                 : inline_func	2
+ *  Description          :
+ *  Parameters           :  [Input, Output, Input / output]
+ *  Return               :
+ *  Critical/explanation :    [yes / No]
+ **************************************************************/
+
+
+/* Private functions */
+/* ----------------- */
+/**************************************************************
+ *  Name                 : Idle
+ *  Description          :	Wait for a button press, turn off movement indicators
+ *  Parameters           :	void
+ *  Return               :	void
+ *  Critical/explanation :	No
+ **************************************************************/
 void Idle(void)
 {
 	LEDs_Off();
@@ -73,10 +130,100 @@ void Idle(void)
 	}
 }
 
-/* Periodic 400ms function 									*/
-/* Window lifter state: ManualMode 							*/
-/* Modifies WindowPosition depending on the button pressed	*/
-/* June 2015 Continental AEP 								*/
+/**************************************************************
+ *  Name                 : Valid_UP
+ *  Description          :	Validates that UP button has been pressed for at least 10ms
+ *  Parameters           :	Void
+ *  Return               :	Void
+ *  Critical/explanation :  No
+ **************************************************************/
+void Valid_UP(void)
+{
+	if(Switch_UP())
+	{
+		Task_400ms();
+		rps_TaskPtr = &OneTouchUp;
+	}
+	else
+	{
+		rps_TaskPtr = &WindowIdle;
+	}
+}
+
+/**************************************************************
+ *  Name                 : Valid_DOWN
+ *  Description          :	Validates that DOWN button has been pressed for at least 10ms
+ *  Parameters           :  Void
+ *  Return               :	Void
+ *  Critical/explanation :	No
+ **************************************************************/
+void Valid_DOWN(void)
+{
+	if(Switch_DOWN())
+	{
+		Task_400ms();
+		rps_TaskPtr = &OneTouchDown;
+	}
+	else
+	{
+		rps_TaskPtr = &WindowIdle;
+	}
+}
+
+/**************************************************************
+ *  Name                 : OneTouch_UP
+ *  Description          :	Activates the one-touch window function to close it
+ *  Parameters           :	Void
+ *  Return               :	Void
+ *  Critical/explanation :	No
+ **************************************************************/
+void OneTouch_UP(void)
+{
+	LED_UP();
+	WindowPosition++;
+	if(WindowPosition >= CLOSED)
+	{
+		LEDs_Off();
+		WindowPosition = CLOSED;
+		rps_TaskPtr = &WindowIdle;
+	}
+	if(Switch_DOWN() | Switch_UP())
+	{
+		rps_TaskPtr = &ManualMode;
+	}
+	Valid_Pinch();
+}
+
+/**************************************************************
+ *  Name                 : OneTouch_DOWN
+ *  Description          :	Activates the one-touch window function to open it
+ *  Parameters           :	Void
+ *  Return               :	Void
+ *  Critical/explanation :	No
+ **************************************************************/
+void OneTouch_DOWN(void)
+{
+	LED_DOWN();
+	WindowPosition--;
+	if(WindowPosition <= OPENED)
+	{
+		LEDs_Off();
+		WindowPosition = OPENED;
+		rps_TaskPtr = &WindowIdle;
+	}
+	if(Switch_DOWN() | Switch_UP())
+	{
+		rps_TaskPtr = &ManualMode;
+	}
+}
+
+/**************************************************************
+ *  Name                 :	Task_400ms
+ *  Description          :	Modifies WindowPosition depending on the button pressed
+ *  Parameters           :  Void
+ *  Return               :	Void
+ *  Critical/explanation :  No
+ **************************************************************/
 void Task_400ms(void)	/* Manual operation; transition each 400ms */
 {
 	LEDs_Off();
@@ -109,85 +256,13 @@ void Task_400ms(void)	/* Manual operation; transition each 400ms */
 	}
 }
 
-/* Valid_UP function 											*/
-/* Window lifter state: ValidateUpSignal  						*/
-/* Validates that UP button has been pressed for at least 10ms	*/
-/* June 2015 Continental AEP 									*/
-void Valid_UP(void)
-{
-	if(Switch_UP())
-	{
-		Task_400ms();
-		rps_TaskPtr = &OneTouchUp;
-	}
-	else
-	{
-		rps_TaskPtr = &WindowIdle;
-	}
-}
-
-/* Valid_DOWN function 												*/
-/* Window lifter state: ValidateDownSignal  						*/
-/* Validates that DOWN button has been pressed for at least 10ms	*/
-/* June 2015 Continental AEP 										*/
-void Valid_DOWN(void)
-{
-	if(Switch_DOWN())
-	{
-		Task_400ms();
-		rps_TaskPtr = &OneTouchDown;
-	}
-	else
-	{
-		rps_TaskPtr = &WindowIdle;
-	}
-}
-
-/* OneTouch_UP function 								*/
-/* Window lifter state: OneTouchUp  					*/
-/* Activates the one-touch window function to close it	*/
-/* June 2015 Continental AEP 							*/
-void OneTouch_UP(void)
-{
-	LED_UP();
-	WindowPosition++;
-	if(WindowPosition >= CLOSED)
-	{
-		LEDs_Off();
-		WindowPosition = CLOSED;
-		rps_TaskPtr = &WindowIdle;
-	}
-	if(Switch_DOWN() | Switch_UP())
-	{
-		rps_TaskPtr = &ManualMode;
-	}
-	Valid_Pinch();
-}
-
-/* OneTouch_DOWN function 								*/
-/* Window lifter state: OneTouchDown  					*/
-/* Activates the one-touch window function to open it	*/
-/* June 2015 Continental AEP 							*/
-void OneTouch_DOWN(void)
-{
-	LED_DOWN();
-	WindowPosition--;
-	if(WindowPosition <= OPENED)
-	{
-		LEDs_Off();
-		WindowPosition = OPENED;
-		rps_TaskPtr = &WindowIdle;
-	}
-	if(Switch_DOWN() | Switch_UP())
-	{
-		rps_TaskPtr = &ManualMode;
-	}
-}
-
-/* Valid_Pinch function, only when closing the window				*/
-/* Validates that pinch button has been pressed for at least 10ms	*/
-/* If true, it triggers anti-pinch safe mode */
-/* June 2015 Continental AEP 										*/
+/**************************************************************
+ *  Name                 : Valid_Pinch
+ *  Description          :	Validates that pinch button has been pressed for at least 10ms
+ *  Parameters           :	Void
+ *  Return               :	Void
+ *  Critical/explanation :  No
+ **************************************************************/
 void Valid_Pinch(void)
 {
 	if(PinchSwitch())
@@ -202,10 +277,13 @@ void Valid_Pinch(void)
 	}
 }
 
-/* SafeOpen function 						*/
-/* Window lifter state: PinchOpen  			*/
-/* Opens window and ignores button's signal	*/
-/* June 2015 Continental AEP 				*/
+/**************************************************************
+ *  Name                 : SafeOpen
+ *  Description          :	Opens window and ignores button's signal
+ *  Parameters           :  Void
+ *  Return               :	Void
+ *  Critical/explanation :  No
+ **************************************************************/
 void SafeOpen(void)
 {
 	WindowPosition--;
@@ -216,11 +294,24 @@ void SafeOpen(void)
 	}
 }
 
-/* AntiPinch function 													*/
-/* Window lifter state: PinchIdle  										*/
-/* After the safe timeout of 5 seconds, goes to WindowIdle state again	*/
-/* June 2015 Continental AEP 											*/
+/**************************************************************
+ *  Name                 : AntiPinch
+ *  Description          :	After the safe timeout of 5 seconds, goes to WindowIdle state again
+ *  Parameters           :  Void
+ *  Return               :	Void
+ *  Critical/explanation :  No
+ **************************************************************/
 void AntiPinch(void)
 {
 	rps_TaskPtr = &WindowIdle;
 }
+
+/* Exported functions */
+/* ------------------ */
+/**************************************************************
+ *  Name                 :	export_func
+ *  Description          :
+ *  Parameters           :  [Input, Output, Input / output]
+ *  Return               :
+ *  Critical/explanation :    [yes / No]
+ **************************************************************/

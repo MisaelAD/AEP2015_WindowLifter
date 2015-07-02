@@ -1,45 +1,78 @@
-/*******************************************************************************/
-/*
-\file       windowlifter.h
-\brief      
-\author     Misael AD
-\version    1.0
-\date       June/2015
-*/
-/*******************************************************************************/
+/*============================================================================*/
+/*                        Continental AEP 2015                              */
+/*============================================================================*/
+/*                        OBJECT SPECIFICATION                                */
+/*============================================================================*
+* C Include:        windowlifter.h
+* Instance:         RPL_1
+* %version:         1.0
+* %created_by:      Misael Alvarez Domínguez
+* %date_created:    Wednesday, July 2, 2015
+*=============================================================================*/
+/* DESCRIPTION : Header file window lifter driver                                         */
+/*============================================================================*/
+/* FUNCTION COMMENT : contains only symbols which are exported to internal    */
+/* platform modules. This will not be delivered with the library              */
+/*                                                                            */
+/*============================================================================*/
+/*                               OBJECT HISTORY                               */
+/*============================================================================*/
+/*  REVISION |   DATE      |                               |      AUTHOR      */
+/*----------------------------------------------------------------------------*/
+/*  1.0      | 2/07/2015  | Creation of header file       | Misael AD     */
+/*============================================================================*/
 
 #ifndef _WINDOWLIFTER_H        /*prevent duplicated includes*/
 #define _WINDOWLIFTER_H
 
-/*-- Includes ----------------------------------------------------------------*/
-
-/** Core modules */
-/** Variable types and common definitions */
-
+/* Includes */
+/* -------- */
 #include "typedefs.h"
 
-/*-- Variables ---------------------------------------------------------------*/
+/* Exported types and constants */
+/* ---------------------------- */
 
-/*-- Types Definitions -------------------------------------------------------*/
+/* Types definition */
+/* typedef */
 typedef struct {						/* Handling task structure definition */
 		T_UWORD ruw_Counter;
 		T_UWORD ruw_TopCount;
 		tCallbackFunction cpfu_PerFunct; 
 }TASKSTRUCT;
-/*-- Defines -----------------------------------------------------------------*/
 
-	/* Electronic Window Control Module States */
-#define WindowIdle 			states_table[0]
-#define ValidateUpSignal 	states_table[1]
-#define ValidateDownSignal 	states_table[2]
-#define ManualMode 			states_table[3]
-#define OneTouchUp 			states_table[4]
-#define OneTouchDown 		states_table[5]
-#define PinchOpen 			states_table[6]
-#define PinchIdle 			states_table[7]
+/*==================================================*/ 
+/* Declaration of exported constants                */
+/*==================================================*/ 
+/* BYTE constants */
 
-/*-- Function Prototypes -----------------------------------------------------*/
 
+/* WORD constants */
+
+
+/* LONG and STRUCTURE constants */
+
+
+
+/*======================================================*/ 
+/* Definition of RAM variables                          */
+/*======================================================*/ 
+/* BYTES */
+
+
+/* WORDS */
+
+
+/* LONGS and STRUCTURES */
+
+
+/*======================================================*/ 
+/* close variable declaration sections                  */
+/*======================================================*/ 
+
+/* Exported functions prototypes and macros */
+/* ---------------------------------------- */
+
+/* Functions prototypes */
 void Task_400ms(void);
 void Valid_UP(void);
 void Valid_DOWN(void);
@@ -50,6 +83,11 @@ void Valid_Pinch(void);
 void SafeOpen(void);
 void AntiPinch(void);
 
-#endif /* _WINDOWLIFTER_H */
+/* Functions macros */
 
-/*******************************************************************************/
+
+/* Exported defines */
+
+
+#endif
+
