@@ -7,6 +7,12 @@
 #include "main.h"
 //#include "MPC5604B.h"
 
+void disableWatchdog(void);
+void init_OnBoardLEDs(void);
+void init_OnBoardPushButtons(void);
+void init_ADC0_P0(void);
+void init_LEDBar(void);
+
 void disableWatchdog(void) 
 {
   SWT.SR.R = 0x0000c520;     /* Write keys to clear soft lock bit */

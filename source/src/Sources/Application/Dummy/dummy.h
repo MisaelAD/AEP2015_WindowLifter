@@ -20,7 +20,6 @@
 /*  REVISION |   DATE      |                               |      AUTHOR      */
 /*----------------------------------------------------------------------------*/
 /*  1.0      | DD/MM/YYYY  | SAR/SIF/SCN_xxx               | Mr. Template     */
-/* Integration under Continuus CM                                             */
 /*============================================================================*/
 
 #ifndef _DUMMY_H        /*prevent duplicated includes*/
@@ -33,6 +32,7 @@
 /* Exported types and constants */
 /* ---------------------------- */
 extern void PIT_1ms(void);
+
 /* Types definition */
 /* typedef */
 

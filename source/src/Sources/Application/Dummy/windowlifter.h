@@ -9,7 +9,7 @@
 * %created_by:      Misael Alvarez Domínguez
 * %date_created:    Wednesday, July 2, 2015
 *=============================================================================*/
-/* DESCRIPTION : Header file window lifter driver                                         */
+/* DESCRIPTION : Header file window lifter driver                             */
 /*============================================================================*/
 /* FUNCTION COMMENT : contains only symbols which are exported to internal    */
 /* platform modules. This will not be delivered with the library              */
@@ -19,7 +19,7 @@
 /*============================================================================*/
 /*  REVISION |   DATE      |                               |      AUTHOR      */
 /*----------------------------------------------------------------------------*/
-/*  1.0      | 2/07/2015  | Creation of header file       | Misael AD     */
+/*  1.0      | 2/07/2015  | Creation of header file       | Misael AD     	  */
 /*============================================================================*/
 
 #ifndef _WINDOWLIFTER_H        /*prevent duplicated includes*/
@@ -73,15 +73,7 @@ typedef struct {						/* Handling task structure definition */
 /* ---------------------------------------- */
 
 /* Functions prototypes */
-void Task_400ms(void);
-void Valid_UP(void);
-void Valid_DOWN(void);
-void OneTouch_UP(void);
-void OneTouch_DOWN(void);
-void Idle(void);
-void Valid_Pinch(void);
-void SafeOpen(void);
-void AntiPinch(void);
+
 
 /* Functions macros */
 

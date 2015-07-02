@@ -1,6 +1,24 @@
 #include "LED.h"
 #include "main.h"
 
+void LED_ADCindicator(void);
+
+void KITT(void);
+
+void LED_WindowLifter(int8_t position);
+
+uint8_t Switch_UP(void);
+
+uint8_t Switch_DOWN(void);
+
+uint8_t PinchSwitch(void);
+
+void LED_UP(void);
+
+void LED_DOWN(void);
+
+void LEDs_Off(void);
+
 /* LED_ADCindicator function */
 /* Uses on-board LEDs to indicate ADC read value */
 /* June 2015 Continental AEP */

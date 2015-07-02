@@ -1,19 +1,19 @@
 #include "typedefs.h"
 
-void LED_ADCindicator(void);
+extern void LED_ADCindicator(void);
 
-void KITT(void);
+extern void KITT(void);
 
-void LED_WindowLifter(int8_t position);
+extern void LED_WindowLifter(int8_t position);
 
-uint8_t Switch_UP(void);
+extern uint8_t Switch_UP(void);
 
-uint8_t Switch_DOWN(void);
+extern uint8_t Switch_DOWN(void);
 
-uint8_t PinchSwitch(void);
+extern uint8_t PinchSwitch(void);
 
-void LED_UP(void);
+extern void LED_UP(void);
 
-void LED_DOWN(void);
+extern void LED_DOWN(void);
 
-void LEDs_Off(void);
+extern void LEDs_Off(void);

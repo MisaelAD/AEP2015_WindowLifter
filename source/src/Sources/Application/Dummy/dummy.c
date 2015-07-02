@@ -21,7 +21,8 @@
 /*----------------------------------------------------------------------------*/
 /*  1.0      | DD/MM/YYYY  |                               | Mr. Template     */
 /* Integration under Continuus CM                                             */
-/*	1.1		|	1/07/2015	|Template standard added		|Miael AD         */
+/*	1.1		|	1/07/2015	|Template standard added		|Misael AD        */
+/*	1.2		|	2/07/2015	|Buttons interface updated		|Misael AD        */
 /*============================================================================*/
 
 /* Includes */
@@ -58,7 +59,7 @@ extern T_SBYTE  WindowPosition;
 
 
 /* LONG and STRUCTURE RAM variables */
-extern TASKSTRUCT *rps_TaskPtr;
+extern TASKSTRUCT *rps_TaskPtr[];
 
 /*======================================================*/ 
 /* close variable declaration sections                  */
@@ -69,11 +70,10 @@ extern TASKSTRUCT *rps_TaskPtr;
 
 /* Private functions prototypes */
 /* ---------------------------- */
-void PIT_1ms(void);
-
 
 /* Exported functions prototypes */
 /* ----------------------------- */
+void PIT_1ms(void);
 
 /* Inline functions */
 /* ---------------- */
@@ -99,14 +99,19 @@ void PIT_1ms(void);
  **************************************************************/
 void PIT_1ms(void)
 {
-	rps_TaskPtr->ruw_Counter++;
-	if(rps_TaskPtr->ruw_Counter >= rps_TaskPtr->ruw_TopCount)	/* Check if match */
+	T_UBYTE i;
+	for(i=0; i<2; i++)
 	{
-		rps_TaskPtr->ruw_Counter=0;			/* Clear counter */
-		rps_TaskPtr->cpfu_PerFunct();		/* Call function */
+		rps_TaskPtr[i]->ruw_Counter++;
+		if(rps_TaskPtr[i]->ruw_Counter >= rps_TaskPtr[i]->ruw_TopCount)	/* Check if match */
+		{
+			rps_TaskPtr[i]->ruw_Counter=0;			/* Clear counter */
+			rps_TaskPtr[i]->cpfu_PerFunct();		/* Call function */
+		}
 	}
 	LED_WindowLifter(WindowPosition);
 }
+
 
 /* Exported functions */
 /* ------------------ */
