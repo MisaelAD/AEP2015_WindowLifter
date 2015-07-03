@@ -227,20 +227,20 @@ Link map of __start
   00000532 000016 00002532 00000c62  2 LEDs_Off 	LED.o 
   00000548 000028 00002548 00000c78  2 Switch_Combination 	LED.o 
   00000570 000000 00002570 00000ca0  1 .text.81 	LED.o 
-  00000570 000440 00002570 00000ca0  1 .text 	windowlifter.o 
+  00000570 00045c 00002570 00000ca0  1 .text 	windowlifter.o 
   00000570 000002 00002570 00000ca0  2 Idle 	windowlifter.o 
   00000572 0000bc 00002572 00000ca2  2 Valid_UP 	windowlifter.o 
   0000062e 0000bc 0000262e 00000d5e  2 Valid_DOWN 	windowlifter.o 
   000006ea 00006a 000026ea 00000e1a  2 OneTouch_UP 	windowlifter.o 
   00000754 000066 00002754 00000e84  2 OneTouch_DOWN 	windowlifter.o 
-  000007ba 0000de 000027ba 00000eea  2 Task_400ms 	windowlifter.o 
-  00000898 00005e 00002898 00000fc8  2 Valid_Pinch 	windowlifter.o 
-  000008f6 00003c 000028f6 00001026  2 SafeOpen 	windowlifter.o 
-  00000932 00000e 00002932 00001062  2 AntiPinch 	windowlifter.o 
-  00000940 000070 00002940 00001070  2 ScanButtons 	windowlifter.o 
-  000009b0 000000 000029b0 000010e0  1 .text.129 	windowlifter.o 
-  000009b0 000064 000029b0 000010e0  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
-  000009b0 00004a 000029b0 000010e0  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000007ba 000102 000027ba 00000eea  2 Task_400ms 	windowlifter.o 
+  000008bc 000056 000028bc 00000fec  2 Valid_Pinch 	windowlifter.o 
+  00000912 00003c 00002912 00001042  2 SafeOpen 	windowlifter.o 
+  0000094e 00000e 0000294e 0000107e  2 AntiPinch 	windowlifter.o 
+  0000095c 000070 0000295c 0000108c  2 ScanButtons 	windowlifter.o 
+  000009cc 000000 000029cc 000010fc  1 .text.129 	windowlifter.o 
+  000009cc 000064 000029cc 000010fc  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000009cc 00004a 000029cc 000010fc  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_15 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -273,7 +273,7 @@ Link map of __start
   UNUSED   000000 ........ ........    _save32gpr_28 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
-  000009f0 000000 000029f0 00001120    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00000a0c 000000 00002a0c 0000113c    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -314,11 +314,11 @@ Link map of __start
   UNUSED   000000 ........ ........    _rest32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _restgpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _rest32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
-  000009fa 000008 000029fa 0000112a  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  000009fc 000000 000029fc 0000112c    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00000a02 00000a 00002a02 00001132  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00000a08 000000 00002a08 00001138    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00000a0c 000008 00002a0c 0000113c  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00000a16 000008 00002a16 00001146  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00000a18 000000 00002a18 00001148    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00000a1e 00000a 00002a1e 0000114e  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00000a24 000000 00002a24 00001154    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00000a28 000008 00002a28 00001158  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_29_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_28_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_27_exit Runtime.PPCEABI.VS.UC.a runtime.o
@@ -362,15 +362,15 @@ Link map of __start
   UNUSED   00001a ........ ........    __shl2i Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001a ........ ........    __shr2u Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001c ........ ........    __shr2i Runtime.PPCEABI.VS.UC.a runtime.o
-  00000a14 000000 00002a14 00001144  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00000a30 000000 00002a30 00001160  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
 
 
 .rodata section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 00000c 00002a18 00001148  1 .rodata 	__ppc_eabi_init.o 
-  00000000 00000c 00002a18 00001148  4 @22 	__ppc_eabi_init.o 
+  00000000 00000c 00002a30 00001160  1 .rodata 	__ppc_eabi_init.o 
+  00000000 00000c 00002a30 00001160  4 @22 	__ppc_eabi_init.o 
 
 
 .ctors section layout
@@ -458,15 +458,15 @@ Memory map:
              .init_vle 000000b8 000001f4 00000380 000000b8 000000b8         11
     .ivor_branch_table 00001000 00000100 00000580 00001000 00001000         36
   .__exception_handlers 00001100 000000a8 00000680 00001100 00001100         49
-             .text_vle 00002000 00000a14 00000730 00002000 00002000         58
-               .rodata 00002a18 0000000c 00001148 00002a18 00002a18        187
-                .ctors 00002a24 00000000 00001154 00002a24 00002a24          0
-                .dtors 00002a24 00000000 00001154 00002a24 00002a24          0
-                 extab 00002a24 00000000 00001154 00002a24 00002a24          0
-            extabindex 00002a24 00000000 00001154 00002a24 00002a24          0
+             .text_vle 00002000 00000a30 00000730 00002000 00002000         58
+               .rodata 00002a30 0000000c 00001160 00002a30 00002a30        189
+                .ctors 00002a3c 00000000 0000116c 00002a3c 00002a3c          0
+                .dtors 00002a3c 00000000 0000116c 00002a3c 00002a3c          0
+                 extab 00002a3c 00000000 0000116c 00002a3c 00002a3c          0
+            extabindex 00002a3c 00000000 0000116c 00002a3c 00002a3c          0
   .__uninitialized_intc_handlertable 40000000 00001340 00001800 00003000 00003000          0
-                 .data 40001340 00000048 00001800 00003000 00003000        188
-                .sdata 40001388 00000010 00001848 00003048 00003048        192
+                 .data 40001340 00000048 00001800 00003000 00003000        190
+                .sdata 40001388 00000010 00001848 00003048 00003048        194
                  .sbss 40001398 00000004 00001858 00003058 00003058          0
                .sdata2 4000139c 00000000 00001858 00003058 00003058          0
                 .sbss2 4000139c 00000000 00001858 00003058 00003058          0
@@ -474,9 +474,9 @@ Memory map:
       .PPC.EMB.apuinfo 00006d1c 00000000 00008580 00009d74 00009d74          0
          .debug_abbrev          0000013b 00001858
            .debug_info          00001dfd 00001993
-           .debug_line          000032fd 00003790
-            .debug_loc          00000672 00006a8d
-       .debug_pubnames          000005b5 000070ff
+           .debug_line          000032fc 00003790
+            .debug_loc          00000672 00006a8c
+       .debug_pubnames          000005b5 000070fe
 
 
 Linker generated symbols:
@@ -502,22 +502,22 @@ _f___exception_handlers_rom 00001100
                   _e_text 00002000
               _f_text_vle 00002000
           _f_text_vle_rom 00002000
-              _e_text_vle 00002a14
-                _f_rodata 00002a18
-            _f_rodata_rom 00002a18
-                _e_rodata 00002a24
-                 _f_ctors 00002a24
-             _f_ctors_rom 00002a24
-                 _e_ctors 00002a24
-                 _f_dtors 00002a24
-             _f_dtors_rom 00002a24
-                 _e_dtors 00002a24
-                  _fextab 00002a24
-              _fextab_rom 00002a24
-                  _eextab 00002a24
-             _fextabindex 00002a24
-         _fextabindex_rom 00002a24
-             _eextabindex 00002a24
+              _e_text_vle 00002a30
+                _f_rodata 00002a30
+            _f_rodata_rom 00002a30
+                _e_rodata 00002a3c
+                 _f_ctors 00002a3c
+             _f_ctors_rom 00002a3c
+                 _e_ctors 00002a3c
+                 _f_dtors 00002a3c
+             _f_dtors_rom 00002a3c
+                 _e_dtors 00002a3c
+                  _fextab 00002a3c
+              _fextab_rom 00002a3c
+                  _eextab 00002a3c
+             _fextabindex 00002a3c
+         _fextabindex_rom 00002a3c
+             _eextabindex 00002a3c
 _f___uninitialized_intc_handlertable 40000000
 _e___uninitialized_intc_handlertable 40001340
                   _f_data 40001340

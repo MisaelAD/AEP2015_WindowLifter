@@ -327,6 +327,7 @@ void Task_400ms(void)	/* Manual operation; transition each 400ms */
 			LEDs_Off();
 			WindowPosition = CLOSED;
 			WindowPtr = &WindowIdle;
+			ButtonPtr = &ButtonIdle;
 		}
 		Valid_Pinch();
 	}
@@ -339,6 +340,7 @@ void Task_400ms(void)	/* Manual operation; transition each 400ms */
 			LEDs_Off();
 			WindowPosition = OPENED;
 			WindowPtr = &WindowIdle;
+			ButtonPtr = &ButtonIdle;
 		}	
 	}
 	else
@@ -361,7 +363,6 @@ void Valid_Pinch(void)
 {
 	if(PinchSwitch())
 	{
-		ATOMIC_ENTRY;
 		Delay_ms(10);
 		if(PinchSwitch())
 		{
@@ -371,7 +372,6 @@ void Valid_Pinch(void)
 			LEDs_Off();
 			LED_DOWN();
 		}
-		ATOMIC_EXIT;
 	}
 	else
 	{
