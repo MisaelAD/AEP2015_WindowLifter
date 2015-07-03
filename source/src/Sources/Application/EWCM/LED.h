@@ -17,3 +17,5 @@ extern void LED_UP(void);
 extern void LED_DOWN(void);
 
 extern void LEDs_Off(void);
+
+extern uint8_t Switch_Combination(void);

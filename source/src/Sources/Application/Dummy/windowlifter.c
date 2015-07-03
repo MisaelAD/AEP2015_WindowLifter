@@ -312,7 +312,13 @@ void OneTouch_DOWN(void)
 void Task_400ms(void)	/* Manual operation; transition each 400ms */
 {
 	LEDs_Off();
-	if(Switch_UP())
+	if(Switch_Combination())
+	{
+		WindowPtr = &WindowIdle;
+		ButtonPtr = &ButtonIdle;
+		LEDs_Off();
+	}
+	else if(Switch_UP())
 	{
 		LED_UP();
 		WindowPosition++;
@@ -359,9 +365,11 @@ void Valid_Pinch(void)
 		Delay_ms(10);
 		if(PinchSwitch())
 		{
+			LEDs_Off();
 			WindowPosition--;
 			WindowPtr = &PinchOpen;
 			LEDs_Off();
+			LED_DOWN();
 		}
 		ATOMIC_EXIT;
 	}
@@ -385,6 +393,7 @@ void SafeOpen(void)
 	{
 		WindowPosition = OPENED;
 		WindowPtr = &PinchIdle;
+		LEDs_Off();
 	}
 	else
 	{
@@ -416,7 +425,11 @@ void ScanButtons(void)
 {
 	if(WindowPtr != &ManualMode)
 	{
-		if(Switch_UP())
+		if( Switch_Combination() )
+		{
+			/* Do nothing */
+		}
+		else if(Switch_UP())
 		{
 			ButtonPtr = &ValidateUpSignal;
 		}

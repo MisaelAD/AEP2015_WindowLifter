@@ -157,3 +157,10 @@ void LEDs_Off(void)
 	LEDB = 0;
 	LEDG = 0;
 }
+
+uint8_t Switch_Combination(void)
+{
+	uint8_t SC;
+	SC = (Switch_UP()) & (Switch_DOWN());
+	return SC;
+}
